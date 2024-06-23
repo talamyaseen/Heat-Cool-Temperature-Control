@@ -94,8 +94,7 @@ float AN[3];     // To store the voltages of AN0, AN1, AN2
 mode_e mode =OFF;
 float temp, sp ;
 
-//float tempf;
-//float spf;
+
 char Buffer[32];
 unsigned int RPS_count=0;
 unsigned int RPS=0;
@@ -104,7 +103,7 @@ int ft=0;
 void setupPorts(void) {
     INTCON2 =0 ;//enable pull up ports
     ADCON0 = 0;
-    ADCON1 = 0b00001100; //3 analog channels, change this according to your application
+    ADCON1 = 0b00001100; //3 analog
     TRISB = 0xFF; // all pushbuttons are inputs
     TRISC = 0x80; // RX input , others output
     TRISA = 0xFF; // All inputs
@@ -165,6 +164,7 @@ void __interrupt(high_priority) highIsr(void)//new syntax
 }
 
 void operation (void){
+    float CoolError;
     switch(mode) {
         case OFF:
             if(PORTBbits.RB3==0){
@@ -191,17 +191,22 @@ void operation (void){
             break;
         
         case AUTO_COOL:
-            // Calculate CoolError
-            /*int CoolError = temp - sp;
-            if (CoolError > 0) {
-                C = (CoolError * 100) / 10; // Calculate PWM percentage for cooling
-                // Ensure minimum PWM level
-                if (C < 25) C = 25;
-                // Set PWM for cooling
-            } else if (temp < (sp - HS)) {
-                C = 0; // Turn cooling off
-                // Activate heater with 50% duty cycle or appropriate control as specified
-            }*/
+        CoolError = temp - sp;
+        if (CoolError > 0) {
+        float PWM_percentage_value = CoolError * 10;
+        if (PWM_percentage_value < 25) {
+            PWM_percentage_value = 25;
+        }
+        raw_val = (int)(PWM_percentage_value * 1023.0 / 100.0); 
+        set_pwm1_raw(raw_val);
+        PORTCbits.RC5 = 0; // Turn heater off
+        PIE2bits.CCP2IE = 0;
+    } else if (temp < (sp - HS)) {
+        set_pwm1_raw(0); // Cooler OFF
+        PORTCbits.RC2 = 0;
+        HC = 50.0; // Simulate turning on the heater to 50%
+        PIE2bits.CCP2IE = 1; // Enable Compare interrupt to simulate heater
+    }
             break;
     }
     

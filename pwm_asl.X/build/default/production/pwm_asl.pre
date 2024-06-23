@@ -3876,7 +3876,6 @@ mode_e mode =OFF;
 float temp, sp ;
 
 
-
 char Buffer[32];
 unsigned int RPS_count=0;
 unsigned int RPS=0;
@@ -3946,6 +3945,7 @@ PIR2bits.TMR3IF = 0;
 }
 
 void operation (void){
+float CoolError;
 switch(mode) {
 case OFF:
 if(PORTBbits.RB3==0){
@@ -3972,8 +3972,22 @@ HC =(AN[1]/5.0)*100.0;
 break;
 
 case AUTO_COOL:
-
-# 205
+CoolError = temp - sp;
+if (CoolError > 0) {
+float PWM_percentage_value = CoolError * 10;
+if (PWM_percentage_value < 25) {
+PWM_percentage_value = 25;
+}
+raw_val = (int)(PWM_percentage_value * 1023.0 / 100.0);
+set_pwm1_raw(raw_val);
+PORTCbits.RC5 = 0;
+PIE2bits.CCP2IE = 0;
+} else if (temp < (sp - HS)) {
+set_pwm1_raw(0);
+PORTCbits.RC2 = 0;
+HC = 50.0;
+PIE2bits.CCP2IE = 1;
+}
 break;
 }
 
