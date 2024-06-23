@@ -3895,6 +3895,7 @@ TRISE = 0x00;
 void initInterrupts(void) {
 INTCON = 0;
 RCONbits.IPEN = 0;
+CCP2CON = 0x09;
 
 
 INTCONbits.INT0IF = 0;
@@ -3944,6 +3945,7 @@ PIR2bits.TMR3IF = 0;
 
 }
 
+
 void operation (void){
 float CoolError;
 switch(mode) {
@@ -3967,8 +3969,28 @@ set_pwm1_raw(raw_val);
 break;
 
 case HEAT:
-HC =(AN[1]/5.0)*100.0;
+HC = (AN[1] / 5.0) * 100.0;
 
+
+raw_val = read_adc_raw_no_lib(1);
+
+
+int compare_value = raw_val * 64;
+if (compare_value > 65535) {
+compare_value = 65535;
+}
+
+
+
+
+PIE2bits.CCP2IE = 1;
+
+
+CCPR2H = (compare_value >> 8) & 0xFF;
+CCPR2L = compare_value & 0xFF;
+
+
+T3CONbits.TMR3ON = 1;
 break;
 
 case AUTO_COOL:

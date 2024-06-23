@@ -112,8 +112,9 @@ void setupPorts(void) {
 }
 
 void initInterrupts(void) {
-       INTCON = 0;
+      INTCON = 0;
     RCONbits.IPEN = 0;
+    CCP2CON = 0x09;
 
     // Clear all interrupt flags
     INTCONbits.INT0IF = 0;
@@ -163,6 +164,7 @@ void __interrupt(high_priority) highIsr(void)//new syntax
 
 }
 
+
 void operation (void){
     float CoolError;
     switch(mode) {
@@ -186,8 +188,28 @@ void operation (void){
             break;
         
         case HEAT:
-            HC =(AN[1]/5.0)*100.0; // HC value
-            // Set PWM or compare value for heater based on H value
+            HC = (AN[1] / 5.0) * 100.0; // HC value
+
+             // Read the raw ADC value for POT1 (analog input 1)
+             raw_val = read_adc_raw_no_lib(1); // Read raw value for POT1 
+
+    // Calculate the compare value for Timer 3
+            int compare_value = raw_val * 64; // Shift left by 6 bits to multiply by 64
+    if (compare_value > 65535) {
+        compare_value = 65535; // Ensure compare_value does not exceed 16-bit limit
+    }
+    // Turn off the cooler
+    //set_pwm1_raw(0);  
+
+    // Enable CCP2 interrupt
+    PIE2bits.CCP2IE = 1;
+
+    // Set the compare value for CCP2
+    CCPR2H = (compare_value >> 8) & 0xFF;
+    CCPR2L = compare_value & 0xFF;
+
+    // Enable Timer 3
+    T3CONbits.TMR3ON = 1;
             break;
         
         case AUTO_COOL:
