@@ -3701,8 +3701,6 @@ void set_pwm1_general(float value, float min, float max);
 # 5 "my_pwm.c"
 void init_pwm1(void)
 {
-
-
 PR2 = 255;
 T2CON = 0;
 T2CONbits.T2CKPS = 0b10;

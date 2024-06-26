@@ -4,8 +4,6 @@
 // See chapter 15 page 141 (PWM mode = 11xx)
 void init_pwm1(void)//10 bit accurcy
 {
-    
-   
     PR2 = 255; //10 bit accurcy
     T2CON = 0;
     T2CONbits.T2CKPS = 0b10; // Set prescaler to 16

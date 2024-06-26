@@ -26,6 +26,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISE `Vuc ~T0 @X0 0 e@3990 ]
 "6372
 [v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
+"3527
+[v _T3CON `Vuc ~T0 @X0 0 e@4017 ]
+"2495
+[v _PIE1 `Vuc ~T0 @X0 0 e@3997 ]
+"2572
+[v _PIR1 `Vuc ~T0 @X0 0 e@3998 ]
+"2649
+[v _IPR1 `Vuc ~T0 @X0 0 e@3999 ]
+"2726
+[v _PIE2 `Vuc ~T0 @X0 0 e@4000 ]
+"2792
+[v _PIR2 `Vuc ~T0 @X0 0 e@4001 ]
+"2858
+[v _IPR2 `Vuc ~T0 @X0 0 e@4002 ]
 "5352
 [s S221 :1 `uc 1 ]
 [n S221 . NOT_BOR ]
@@ -79,19 +93,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S250 . . . ]
 "6237
 [v _INTCON3bits `VS250 ~T0 @X0 0 e@4080 ]
-"2798
-[s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S98 . CCP2IF TMR3IF HLVDIF BCLIF EEIF . CMIF OSCFIF ]
-"2808
-[s S99 :2 `uc 1 :1 `uc 1 ]
-[n S99 . . LVDIF ]
-"2797
-[u S97 `S98 1 `S99 1 ]
-[n S97 . . . ]
-"2813
-[v _PIR2bits `VS97 ~T0 @X0 0 e@4001 ]
-"3527
-[v _T3CON `Vuc ~T0 @X0 0 e@4017 ]
 "3533
 [s S131 :2 `uc 1 :1 `uc 1 ]
 [n S131 . . NOT_T3SYNC ]
@@ -126,18 +127,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S253 . . . . ]
 "6327
 [v _INTCON2bits `VS253 ~T0 @X0 0 e@4081 ]
-"2495
-[v _PIE1 `Vuc ~T0 @X0 0 e@3997 ]
-"2572
-[v _PIR1 `Vuc ~T0 @X0 0 e@3998 ]
-"2649
-[v _IPR1 `Vuc ~T0 @X0 0 e@3999 ]
-"2726
-[v _PIE2 `Vuc ~T0 @X0 0 e@4000 ]
-"2792
-[v _PIR2 `Vuc ~T0 @X0 0 e@4001 ]
-"2858
-[v _IPR2 `Vuc ~T0 @X0 0 e@4002 ]
 "2732
 [s S95 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S95 . CCP2IE TMR3IE HLVDIE BCLIE EEIE . CMIE OSCFIE ]
@@ -149,13 +138,39 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S94 . . . ]
 "2747
 [v _PIE2bits `VS94 ~T0 @X0 0 e@4000 ]
+"3639
+[v _TMR3 `Vus ~T0 @X0 0 e@4018 ]
 [t ~ __interrupt . k ]
 [t T51 __interrupt high_priority  ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"193 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4620.h
+"2798 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4620.h
+[s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S98 . CCP2IF TMR3IF HLVDIF BCLIF EEIF . CMIF OSCFIF ]
+"2808
+[s S99 :2 `uc 1 :1 `uc 1 ]
+[n S99 . . LVDIF ]
+"2797
+[u S97 `S98 1 `S99 1 ]
+[n S97 . . . ]
+"2813
+[v _PIR2bits `VS97 ~T0 @X0 0 e@4001 ]
+"1108
+[s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S44 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"1118
+[s S45 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S45 . LC0 LC1 LC2 LC3 LC4 LC5 LC6 LC7 ]
+"1107
+[u S43 `S44 1 `S45 1 ]
+[n S43 . . . ]
+"1129
+[v _LATCbits `VS43 ~T0 @X0 0 e@3979 ]
+"4232
+[v _CCPR2 `Vus ~T0 @X0 0 e@4027 ]
+"193
 [s S11 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S11 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
 "203
@@ -198,10 +213,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PORTCbits `VS15 ~T0 @X0 0 e@3970 ]
 "7 my_adc.h
 [v _read_adc_raw_no_lib `(i ~T0 @X0 0 ef1`uc ]
-"4246 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4620.h
-[v _CCPR2H `Vuc ~T0 @X0 0 e@4028 ]
-"4239
-[v _CCPR2L `Vuc ~T0 @X0 0 e@4027 ]
 "194 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "35 lcd_x8.h
@@ -3067,6 +3078,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temp `f ~T0 @X0 1 e ]
 [v _sp `f ~T0 @X0 1 e ]
 [; ;pwm_asl.c: 95: float temp, sp ;
+"96
+[v _compare `f ~T0 @X0 1 e ]
+[; ;pwm_asl.c: 96: float compare;
 "98
 [v _Buffer `uc ~T0 @X0 -> 32 `i e ]
 [; ;pwm_asl.c: 98: char Buffer[32];
@@ -3131,591 +3145,645 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pwm_asl.c: 115: INTCON = 0;
 "115
 [e = _INTCON -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 116: RCONbits.IPEN = 0;
+[; ;pwm_asl.c: 116: T3CON = 0;
 "116
-[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 117: CCP2CON = 0x09;
-"117
-[e = _CCP2CON -> -> 9 `i `uc ]
-[; ;pwm_asl.c: 120: INTCONbits.INT0IF = 0;
-"120
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 121: INTCON3bits.INT2IF = 0;
-"121
-[e = . . _INTCON3bits 0 1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 122: PIR2bits.TMR3IF = 0;
-"122
-[e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 125: INTCONbits.INT0IE = 1;
-"125
-[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 126: INTCON3bits.INT2IE = 1;
-"126
-[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 127: T3CON = 0;
-"127
 [e = _T3CON -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 128: T3CONbits.TMR3ON = 1;
-"128
-[e = . . _T3CONbits 1 0 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 129: INTCON2 = 0;
-"129
-[e = _INTCON2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 130: INTCON2bits.INTEDG2 = 1;
-"130
-[e = . . _INTCON2bits 1 4 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 131: INTCON2bits.INTEDG0= 1;
-"131
-[e = . . _INTCON2bits 1 6 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 132: PIE1 = 0;
-"132
+[; ;pwm_asl.c: 117: PIE1 = 0;
+"117
 [e = _PIE1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 133: PIR1 = 0;
-"133
+[; ;pwm_asl.c: 118: PIR1 = 0;
+"118
 [e = _PIR1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 134: IPR1 = 0;
-"134
+[; ;pwm_asl.c: 119: IPR1 = 0;
+"119
 [e = _IPR1 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 135: PIE2 = 0;
-"135
+[; ;pwm_asl.c: 120: PIE2 = 0;
+"120
 [e = _PIE2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 136: PIE2 = 0;
-"136
-[e = _PIE2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 137: PIR2 = 0;
-"137
+[; ;pwm_asl.c: 121: PIR2 = 0;
+"121
 [e = _PIR2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 138: IPR2 = 0;
-"138
+[; ;pwm_asl.c: 122: IPR2 = 0;
+"122
 [e = _IPR2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 139: PIE2bits.CCP2IE = 1;
+[; ;pwm_asl.c: 123: RCONbits.IPEN = 0;
+"123
+[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 124: CCP2CON = 0x09;
+"124
+[e = _CCP2CON -> -> 9 `i `uc ]
+[; ;pwm_asl.c: 127: INTCONbits.INT0IF = 0;
+"127
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 128: INTCON3bits.INT2IF = 0;
+"128
+[e = . . _INTCON3bits 0 1 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 131: INTCONbits.INT0IE = 1;
+"131
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 132: INTCON3bits.INT2IE = 1;
+"132
+[e = . . _INTCON3bits 0 4 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 134: T3CONbits.TMR3ON = 1;
+"134
+[e = . . _T3CONbits 1 0 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 135: INTCON2bits.INTEDG2 = 1;
+"135
+[e = . . _INTCON2bits 1 4 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 136: INTCON2bits.INTEDG0 = 1;
+"136
+[e = . . _INTCON2bits 1 6 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 137: PIE2bits.TMR3IE = 0;
+"137
+[e = . . _PIE2bits 0 1 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 139: INTCONbits.GIE = 1;
 "139
-[e = . . _PIE2bits 0 0 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 140: INTCONbits.GIE = 1;
-"140
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 142: }
+[; ;pwm_asl.c: 140: T3CON = 0x00;
+"140
+[e = _T3CON -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 141: T3CONbits.T3CKPS = 0b10;
+"141
+[e = . . _T3CONbits 1 4 -> -> 2 `i `uc ]
+[; ;pwm_asl.c: 142: T3CONbits.TMR3ON = 1;
 "142
+[e = . . _T3CONbits 1 0 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 143: T3CONbits.T3CCP2 = 1;
+"143
+[e = . . _T3CONbits 1 5 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 144: TMR3 = 0x0000;
+"144
+[e = _TMR3 -> -> 0 `i `us ]
+[; ;pwm_asl.c: 145: PIE2bits.TMR3IE = 0;
+"145
+[e = . . _PIE2bits 0 1 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 146: INTCONbits.PEIE = 1;
+"146
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 147: INTCONbits.GIE = 1;
+"147
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 148: }
+"148
 [e :UE 268 ]
 }
 [v $root$_highIsr `(v ~T0 @X0 0 e ]
-"143
+"149
 [v _highIsr `(v ~T51 @X0 1 ef ]
-"144
+"150
 {
-[; ;pwm_asl.c: 143: void __interrupt(high_priority) highIsr(void)
-[; ;pwm_asl.c: 144: {
+[; ;pwm_asl.c: 149: void __interrupt(high_priority) highIsr(void)
+[; ;pwm_asl.c: 150: {
 [e :U _highIsr ]
 [f ]
-[; ;pwm_asl.c: 145: if (INTCONbits.INT0IF) {
-"145
+[; ;pwm_asl.c: 151: if (INTCONbits.INT0IF) {
+"151
 [e $ ! != -> . . _INTCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 270  ]
 {
-[; ;pwm_asl.c: 146: _delay((unsigned long)((250)*(4000000UL/4000.0)));
-"146
+[; ;pwm_asl.c: 152: _delay((unsigned long)((250)*(4000000UL/4000.0)));
+"152
 [e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
-[; ;pwm_asl.c: 147: if (INTCONbits.INT0IF) {
-"147
+[; ;pwm_asl.c: 153: if (INTCONbits.INT0IF) {
+"153
 [e $ ! != -> . . _INTCONbits 0 1 `i -> -> -> 0 `i `Vuc `i 271  ]
 {
-[; ;pwm_asl.c: 148: mode = (mode + 1) % 4;
-"148
+[; ;pwm_asl.c: 154: mode = (mode + 1) % 4;
+"154
 [e = _mode -> % + -> _mode `i -> 1 `i -> 4 `i `E3004 ]
-[; ;pwm_asl.c: 149: INTCONbits.INT0IF = 0;
-"149
+[; ;pwm_asl.c: 155: INTCONbits.INT0IF = 0;
+"155
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
-"150
+"156
 }
 [e :U 271 ]
-"152
-}
-[e :U 270 ]
-[; ;pwm_asl.c: 150: }
-[; ;pwm_asl.c: 152: }
-[; ;pwm_asl.c: 153: if (INTCON3bits.INT2IF) {
-"153
-[e $ ! != -> . . _INTCON3bits 0 1 `i -> -> -> 0 `i `Vuc `i 272  ]
-{
-[; ;pwm_asl.c: 154: _delay((unsigned long)((250)*(4000000UL/4000.0)));
-"154
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
-[; ;pwm_asl.c: 155: if (INTCON3bits.INT2IF) {
-"155
-[e $ ! != -> . . _INTCON3bits 0 1 `i -> -> -> 0 `i `Vuc `i 273  ]
-{
-[; ;pwm_asl.c: 156: HS = (HS + 1) % (HS_4 + 1);
-"156
-[e = _HS -> % + -> _HS `i -> 1 `i + -> . `E3010 4 `i -> 1 `i `E3010 ]
-[; ;pwm_asl.c: 157: INTCON3bits.INT2IF = 0;
-"157
-[e = . . _INTCON3bits 0 1 -> -> 0 `i `uc ]
 "158
 }
-[e :U 273 ]
+[e :U 270 ]
+[; ;pwm_asl.c: 156: }
+[; ;pwm_asl.c: 158: }
+[; ;pwm_asl.c: 159: if (INTCON3bits.INT2IF) {
 "159
+[e $ ! != -> . . _INTCON3bits 0 1 `i -> -> -> 0 `i `Vuc `i 272  ]
+{
+[; ;pwm_asl.c: 160: _delay((unsigned long)((250)*(4000000UL/4000.0)));
+"160
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 4000000 `ul `d .4000.0 `ul ]
+[; ;pwm_asl.c: 161: if (INTCON3bits.INT2IF) {
+"161
+[e $ ! != -> . . _INTCON3bits 0 1 `i -> -> -> 0 `i `Vuc `i 273  ]
+{
+[; ;pwm_asl.c: 162: HS = (HS + 1) % (HS_4 + 1);
+"162
+[e = _HS -> % + -> _HS `i -> 1 `i + -> . `E3010 4 `i -> 1 `i `E3010 ]
+[; ;pwm_asl.c: 163: INTCON3bits.INT2IF = 0;
+"163
+[e = . . _INTCON3bits 0 1 -> -> 0 `i `uc ]
+"164
+}
+[e :U 273 ]
+"165
 }
 [e :U 272 ]
-[; ;pwm_asl.c: 158: }
-[; ;pwm_asl.c: 159: }
-[; ;pwm_asl.c: 160: if (PIR2bits.TMR3IF) {
-"160
+[; ;pwm_asl.c: 164: }
+[; ;pwm_asl.c: 165: }
+[; ;pwm_asl.c: 167: if (PIR2bits.TMR3IF)
+"167
 [e $ ! != -> . . _PIR2bits 0 1 `i -> -> -> 0 `i `Vuc `i 274  ]
+[; ;pwm_asl.c: 168: {
+"168
 {
-[; ;pwm_asl.c: 162: PIR2bits.TMR3IF = 0;
-"162
+[; ;pwm_asl.c: 170: PIR2bits.TMR3IF = 0;
+"170
 [e = . . _PIR2bits 0 1 -> -> 0 `i `uc ]
-"163
+[; ;pwm_asl.c: 173: LATCbits.LATC5 = 1;
+"173
+[e = . . _LATCbits 0 5 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 176: CCPR2 = compare;
+"176
+[e = _CCPR2 -> _compare `us ]
+"177
 }
 [e :U 274 ]
-[; ;pwm_asl.c: 163: }
-[; ;pwm_asl.c: 165: }
-"165
+[; ;pwm_asl.c: 177: }
+[; ;pwm_asl.c: 180: if (PIR2bits.CCP2IF)
+"180
+[e $ ! != -> . . _PIR2bits 0 0 `i -> -> -> 0 `i `Vuc `i 275  ]
+[; ;pwm_asl.c: 181: {
+"181
+{
+[; ;pwm_asl.c: 182: PIR2bits.CCP2IF = 0;
+"182
+[e = . . _PIR2bits 0 0 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 185: LATCbits.LATC5 = 0;
+"185
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+"189
+}
+[e :U 275 ]
+[; ;pwm_asl.c: 189: }
+[; ;pwm_asl.c: 202: }
+"202
 [e :UE 269 ]
 }
-"168
+"205
 [v _operation `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm_asl.c: 168: void operation (void){
+[; ;pwm_asl.c: 205: void operation (void){
 [e :U _operation ]
 [f ]
-"169
+"206
 [v _CoolError `f ~T0 @X0 1 a ]
-[; ;pwm_asl.c: 169: float CoolError;
-[; ;pwm_asl.c: 170: switch(mode) {
-"170
-[e $U 277  ]
+[; ;pwm_asl.c: 206: float CoolError;
+[; ;pwm_asl.c: 207: switch(mode) {
+"207
+[e $U 278  ]
 {
-[; ;pwm_asl.c: 171: case OFF:
-"171
-[e :U 278 ]
-[; ;pwm_asl.c: 172: if(PORTBbits.RB3==0){
-"172
-[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 279  ]
-{
-[; ;pwm_asl.c: 173: delay_ms(250);
-"173
-[e ( _delay_ms (1 -> -> 250 `i `ui ]
-[; ;pwm_asl.c: 174: if(PORTBbits.RB3==0)
-"174
+[; ;pwm_asl.c: 208: case OFF:
+"208
+[e :U 279 ]
+[; ;pwm_asl.c: 209: if(PORTBbits.RB3==0){
+"209
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 280  ]
-[; ;pwm_asl.c: 175: {
-"175
 {
-[; ;pwm_asl.c: 176: set_pwm1_raw(0);
-"176
+[; ;pwm_asl.c: 210: delay_ms(250);
+"210
+[e ( _delay_ms (1 -> -> 250 `i `ui ]
+[; ;pwm_asl.c: 211: if(PORTBbits.RB3==0)
+"211
+[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 281  ]
+[; ;pwm_asl.c: 212: {
+"212
+{
+[; ;pwm_asl.c: 213: set_pwm1_raw(0);
+"213
 [e ( _set_pwm1_raw (1 -> -> 0 `i `ui ]
-[; ;pwm_asl.c: 177: PORTCbits.RC2=0;
-"177
+[; ;pwm_asl.c: 214: PORTCbits.RC2=0;
+"214
 [e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 178: HC=0;
-"178
+[; ;pwm_asl.c: 215: PORTCbits.RC5=0;
+"215
+[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 216: HC=0;
+"216
 [e = _HC -> -> 0 `i `f ]
-[; ;pwm_asl.c: 179: PIE2bits.CCP2IE = 0;
-"179
+[; ;pwm_asl.c: 217: PIE2bits.CCP2IE = 0;
+"217
 [e = . . _PIE2bits 0 0 -> -> 0 `i `uc ]
-"180
+[; ;pwm_asl.c: 218: PIE2bits.TMR3IE = 0;
+"218
+[e = . . _PIE2bits 0 1 -> -> 0 `i `uc ]
+"219
+}
+[e :U 281 ]
+"220
 }
 [e :U 280 ]
-"181
-}
-[e :U 279 ]
-[; ;pwm_asl.c: 180: }
-[; ;pwm_asl.c: 181: }
-[; ;pwm_asl.c: 182: break;
-"182
-[e $U 276  ]
-[; ;pwm_asl.c: 183: case COOL:
-"183
-[e :U 281 ]
-[; ;pwm_asl.c: 185: HC =(AN[1]/5.0)*100.0;
-"185
-[e = _HC -> * / -> *U + &U _AN * -> -> -> 1 `i `ui `ux -> -> # *U &U _AN `ui `ux `d .5.0 .100.0 `f ]
-[; ;pwm_asl.c: 186: raw_val = read_adc_raw_no_lib(1);
-"186
-[e = _raw_val ( _read_adc_raw_no_lib (1 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 187: set_pwm1_raw(raw_val);
-"187
-[e ( _set_pwm1_raw (1 -> _raw_val `ui ]
-[; ;pwm_asl.c: 188: break;
-"188
-[e $U 276  ]
-[; ;pwm_asl.c: 190: case HEAT:
-"190
+[; ;pwm_asl.c: 219: }
+[; ;pwm_asl.c: 220: }
+[; ;pwm_asl.c: 221: break;
+"221
+[e $U 277  ]
+[; ;pwm_asl.c: 222: case COOL:
+"222
 [e :U 282 ]
-[; ;pwm_asl.c: 191: HC = (AN[1] / 5.0) * 100.0;
-"191
+[; ;pwm_asl.c: 224: HC =(AN[1]/5.0)*100.0;
+"224
 [e = _HC -> * / -> *U + &U _AN * -> -> -> 1 `i `ui `ux -> -> # *U &U _AN `ui `ux `d .5.0 .100.0 `f ]
-[; ;pwm_asl.c: 194: raw_val = read_adc_raw_no_lib(1);
-"194
+[; ;pwm_asl.c: 225: raw_val = read_adc_raw_no_lib(1);
+"225
 [e = _raw_val ( _read_adc_raw_no_lib (1 -> -> 1 `i `uc ]
-"197
-[v _compare_value `i ~T0 @X0 1 a ]
-[; ;pwm_asl.c: 197: int compare_value = raw_val * 64;
-[e = _compare_value * _raw_val -> 64 `i ]
-[; ;pwm_asl.c: 198: if (compare_value > 65535) {
-"198
-[e $ ! > -> _compare_value `l -> 65535 `l 283  ]
-{
-[; ;pwm_asl.c: 199: compare_value = 65535;
-"199
-[e = _compare_value -> -> 65535 `l `i ]
-"200
-}
+[; ;pwm_asl.c: 226: set_pwm1_raw(raw_val);
+"226
+[e ( _set_pwm1_raw (1 -> _raw_val `ui ]
+[; ;pwm_asl.c: 227: PORTCbits.RC5=0;
+"227
+[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 228: PIE2bits.CCP2IE = 0;
+"228
+[e = . . _PIE2bits 0 0 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 229: PIE2bits.TMR3IE = 0;
+"229
+[e = . . _PIE2bits 0 1 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 230: break;
+"230
+[e $U 277  ]
+[; ;pwm_asl.c: 232: case HEAT:
+"232
 [e :U 283 ]
-[; ;pwm_asl.c: 200: }
-[; ;pwm_asl.c: 205: PIE2bits.CCP2IE = 1;
-"205
+[; ;pwm_asl.c: 233: HC = (AN[1] / 5.0) * 100.0;
+"233
+[e = _HC -> * / -> *U + &U _AN * -> -> -> 1 `i `ui `ux -> -> # *U &U _AN `ui `ux `d .5.0 .100.0 `f ]
+[; ;pwm_asl.c: 234: raw_val = read_adc_raw_no_lib(1);
+"234
+[e = _raw_val ( _read_adc_raw_no_lib (1 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 235: compare=raw_val * 64;
+"235
+[e = _compare -> * _raw_val -> 64 `i `f ]
+[; ;pwm_asl.c: 236: set_pwm1_raw(0);
+"236
+[e ( _set_pwm1_raw (1 -> -> 0 `i `ui ]
+[; ;pwm_asl.c: 237: PORTCbits.RC2=0;
+"237
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;pwm_asl.c: 238: PIE2bits.CCP2IE = 1;
+"238
 [e = . . _PIE2bits 0 0 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 208: CCPR2H = (compare_value >> 8) & 0xFF;
-"208
-[e = _CCPR2H -> & >> _compare_value -> 8 `i -> 255 `i `uc ]
-[; ;pwm_asl.c: 209: CCPR2L = compare_value & 0xFF;
-"209
-[e = _CCPR2L -> & _compare_value -> 255 `i `uc ]
-[; ;pwm_asl.c: 212: T3CONbits.TMR3ON = 1;
-"212
-[e = . . _T3CONbits 1 0 -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 213: break;
-"213
-[e $U 276  ]
-[; ;pwm_asl.c: 215: case AUTO_COOL:
-"215
+[; ;pwm_asl.c: 239: PIE2bits.TMR3IE = 1;
+"239
+[e = . . _PIE2bits 0 1 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 240: break;
+"240
+[e $U 277  ]
+[; ;pwm_asl.c: 242: case AUTO_COOL:
+"242
 [e :U 284 ]
-[; ;pwm_asl.c: 216: CoolError = temp - sp;
-"216
+[; ;pwm_asl.c: 243: CoolError = temp - sp;
+"243
 [e = _CoolError - _temp _sp ]
-[; ;pwm_asl.c: 217: if (CoolError > 0) {
-"217
+[; ;pwm_asl.c: 244: if (CoolError > 0) {
+"244
 [e $ ! > _CoolError -> -> 0 `i `f 285  ]
 {
-"218
+"245
 [v _PWM_percentage_value `f ~T0 @X0 1 a ]
-[; ;pwm_asl.c: 218: float PWM_percentage_value = CoolError * 10;
+[; ;pwm_asl.c: 245: float PWM_percentage_value = CoolError * 10;
 [e = _PWM_percentage_value * _CoolError -> -> 10 `i `f ]
-[; ;pwm_asl.c: 219: if (PWM_percentage_value < 25) {
-"219
+[; ;pwm_asl.c: 246: if (PWM_percentage_value < 25) {
+"246
 [e $ ! < _PWM_percentage_value -> -> 25 `i `f 286  ]
 {
-[; ;pwm_asl.c: 220: PWM_percentage_value = 25;
-"220
+[; ;pwm_asl.c: 247: PWM_percentage_value = 25;
+"247
 [e = _PWM_percentage_value -> -> 25 `i `f ]
-"221
+"248
 }
 [e :U 286 ]
-[; ;pwm_asl.c: 221: }
-[; ;pwm_asl.c: 222: raw_val = (int)(PWM_percentage_value * 1023.0 / 100.0);
-"222
-[e = _raw_val -> / * -> _PWM_percentage_value `d .1023.0 .100.0 `i ]
-[; ;pwm_asl.c: 223: set_pwm1_raw(raw_val);
-"223
+[; ;pwm_asl.c: 248: }
+[; ;pwm_asl.c: 249: HC =(AN[1]/5.0)*100.0;
+"249
+[e = _HC -> * / -> *U + &U _AN * -> -> -> 1 `i `ui `ux -> -> # *U &U _AN `ui `ux `d .5.0 .100.0 `f ]
+[; ;pwm_asl.c: 250: raw_val = read_adc_raw_no_lib(1);
+"250
+[e = _raw_val ( _read_adc_raw_no_lib (1 -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 251: set_pwm1_raw(raw_val);
+"251
 [e ( _set_pwm1_raw (1 -> _raw_val `ui ]
-[; ;pwm_asl.c: 224: PORTCbits.RC5 = 0;
-"224
+[; ;pwm_asl.c: 252: PORTCbits.RC5 = 0;
+"252
 [e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 225: PIE2bits.CCP2IE = 0;
-"225
+[; ;pwm_asl.c: 253: PIE2bits.CCP2IE = 0;
+"253
 [e = . . _PIE2bits 0 0 -> -> 0 `i `uc ]
-"226
+[; ;pwm_asl.c: 254: PIE2bits.TMR3IE = 0;
+"254
+[e = . . _PIE2bits 0 1 -> -> 0 `i `uc ]
+"255
 }
-[; ;pwm_asl.c: 226: } else if (temp < (sp - HS)) {
+[; ;pwm_asl.c: 255: } else if (temp < (sp - HS)) {
 [e $U 287  ]
 [e :U 285 ]
 [e $ ! < _temp - _sp -> _HS `f 288  ]
 {
-[; ;pwm_asl.c: 227: set_pwm1_raw(0);
-"227
+[; ;pwm_asl.c: 256: set_pwm1_raw(0);
+"256
 [e ( _set_pwm1_raw (1 -> -> 0 `i `ui ]
-[; ;pwm_asl.c: 228: PORTCbits.RC2 = 0;
-"228
+[; ;pwm_asl.c: 257: PORTCbits.RC2 = 0;
+"257
 [e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-[; ;pwm_asl.c: 229: HC = 50.0;
-"229
+[; ;pwm_asl.c: 258: HC = 50.0;
+"258
 [e = _HC -> .50.0 `f ]
-[; ;pwm_asl.c: 230: PIE2bits.CCP2IE = 1;
-"230
+[; ;pwm_asl.c: 259: compare=512 * 64;
+"259
+[e = _compare -> * -> 512 `i -> 64 `i `f ]
+[; ;pwm_asl.c: 260: PIE2bits.CCP2IE = 1;
+"260
 [e = . . _PIE2bits 0 0 -> -> 1 `i `uc ]
-"231
+[; ;pwm_asl.c: 261: PIE2bits.TMR3IE = 1;
+"261
+[e = . . _PIE2bits 0 1 -> -> 1 `i `uc ]
+"262
 }
 [e :U 288 ]
-"232
-[e :U 287 ]
-[; ;pwm_asl.c: 231: }
-[; ;pwm_asl.c: 232: break;
-[e $U 276  ]
-"233
-}
-[; ;pwm_asl.c: 233: }
-[e $U 276  ]
-"170
-[e :U 277 ]
-[e [\ _mode , $ . `E3004 0 278
- , $ . `E3004 1 281
- , $ . `E3004 2 282
- , $ . `E3004 3 284
- 276 ]
-"233
-[e :U 276 ]
-[; ;pwm_asl.c: 235: }
-"235
-[e :UE 275 ]
-}
-"236
-[v _display `(v ~T0 @X0 1 ef ]
-{
-[; ;pwm_asl.c: 236: void display(void) {
-[e :U _display ]
-[f ]
-"237
-[v _LCD `uc ~T0 @X0 -> 64 `i a ]
-"238
-[v _LCDP `uc ~T0 @X0 -> 64 `i a ]
-"239
-[v _C `uc ~T0 @X0 1 a ]
-[v _H `uc ~T0 @X0 1 a ]
-[; ;pwm_asl.c: 237: char LCD[64];
-[; ;pwm_asl.c: 238: char LCDP[64];
-[; ;pwm_asl.c: 239: unsigned char C, H;
-[; ;pwm_asl.c: 240: switch(mode) {
-"240
-[e $U 291  ]
-{
-[; ;pwm_asl.c: 241: case OFF:
-"241
-[e :U 292 ]
-[; ;pwm_asl.c: 242: sprintf(LCDP, "OFF                 ");
-"242
-[e ( _sprintf (1 , &U _LCDP :s 1C ]
-[; ;pwm_asl.c: 243: H = 'N';
-"243
-[e = _H -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 244: C = 'N';
-"244
-[e = _C -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 245: break;
-"245
-[e $U 290  ]
-[; ;pwm_asl.c: 247: case COOL:
-"247
-[e :U 293 ]
-[; ;pwm_asl.c: 248: sprintf(LCDP, "Cool                ");
-"248
-[e ( _sprintf (1 , &U _LCDP :s 2C ]
-[; ;pwm_asl.c: 249: H = 'N';
-"249
-[e = _H -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 250: C = 'Y';
-"250
-[e = _C -> -> 89 `ui `uc ]
-[; ;pwm_asl.c: 251: break;
-"251
-[e $U 290  ]
-[; ;pwm_asl.c: 253: case HEAT:
-"253
-[e :U 294 ]
-[; ;pwm_asl.c: 254: sprintf(LCDP, "Heat                ");
-"254
-[e ( _sprintf (1 , &U _LCDP :s 3C ]
-[; ;pwm_asl.c: 255: H = 'Y';
-"255
-[e = _H -> -> 89 `ui `uc ]
-[; ;pwm_asl.c: 256: C = 'N';
-"256
-[e = _C -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 257: break;
-"257
-[e $U 290  ]
-[; ;pwm_asl.c: 259: case AUTO_COOL:
-"259
-[e :U 295 ]
-[; ;pwm_asl.c: 260: sprintf(LCDP, "Auto Cool         ");
-"260
-[e ( _sprintf (1 , &U _LCDP :s 4C ]
-[; ;pwm_asl.c: 261: H = 'N';
-"261
-[e = _H -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 262: C = 'N';
-"262
-[e = _C -> -> 78 `ui `uc ]
-[; ;pwm_asl.c: 263: break;
 "263
-[e $U 290  ]
+[e :U 287 ]
+[; ;pwm_asl.c: 262: }
+[; ;pwm_asl.c: 263: break;
+[e $U 277  ]
 "264
 }
 [; ;pwm_asl.c: 264: }
+[e $U 277  ]
+"207
+[e :U 278 ]
+[e [\ _mode , $ . `E3004 0 279
+ , $ . `E3004 1 282
+ , $ . `E3004 2 283
+ , $ . `E3004 3 284
+ 277 ]
+"264
+[e :U 277 ]
+[; ;pwm_asl.c: 266: }
+"266
+[e :UE 276 ]
+}
+"267
+[v _display `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm_asl.c: 267: void display(void) {
+[e :U _display ]
+[f ]
+"268
+[v _LCD `uc ~T0 @X0 -> 64 `i a ]
+"269
+[v _LCDP `uc ~T0 @X0 -> 64 `i a ]
+"270
+[v _C `uc ~T0 @X0 1 a ]
+[v _H `uc ~T0 @X0 1 a ]
+[; ;pwm_asl.c: 268: char LCD[64];
+[; ;pwm_asl.c: 269: char LCDP[64];
+[; ;pwm_asl.c: 270: unsigned char C, H;
+[; ;pwm_asl.c: 271: switch(mode) {
+"271
+[e $U 291  ]
+{
+[; ;pwm_asl.c: 272: case OFF:
+"272
+[e :U 292 ]
+[; ;pwm_asl.c: 273: sprintf(LCDP, "OFF                 ");
+"273
+[e ( _sprintf (1 , &U _LCDP :s 1C ]
+[; ;pwm_asl.c: 274: H = 'N';
+"274
+[e = _H -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 275: C = 'N';
+"275
+[e = _C -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 276: break;
+"276
 [e $U 290  ]
-"240
+[; ;pwm_asl.c: 278: case COOL:
+"278
+[e :U 293 ]
+[; ;pwm_asl.c: 279: sprintf(LCDP, "Cool                ");
+"279
+[e ( _sprintf (1 , &U _LCDP :s 2C ]
+[; ;pwm_asl.c: 280: H = 'N';
+"280
+[e = _H -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 281: C = 'Y';
+"281
+[e = _C -> -> 89 `ui `uc ]
+[; ;pwm_asl.c: 282: break;
+"282
+[e $U 290  ]
+[; ;pwm_asl.c: 284: case HEAT:
+"284
+[e :U 294 ]
+[; ;pwm_asl.c: 285: sprintf(LCDP, "Heat                ");
+"285
+[e ( _sprintf (1 , &U _LCDP :s 3C ]
+[; ;pwm_asl.c: 286: H = 'Y';
+"286
+[e = _H -> -> 89 `ui `uc ]
+[; ;pwm_asl.c: 287: C = 'N';
+"287
+[e = _C -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 288: break;
+"288
+[e $U 290  ]
+[; ;pwm_asl.c: 290: case AUTO_COOL:
+"290
+[e :U 295 ]
+[; ;pwm_asl.c: 291: sprintf(LCDP, "Auto Cool         ");
+"291
+[e ( _sprintf (1 , &U _LCDP :s 4C ]
+[; ;pwm_asl.c: 292: H = 'N';
+"292
+[e = _H -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 293: C = 'N';
+"293
+[e = _C -> -> 78 `ui `uc ]
+[; ;pwm_asl.c: 294: break;
+"294
+[e $U 290  ]
+"295
+}
+[; ;pwm_asl.c: 295: }
+[e $U 290  ]
+"271
 [e :U 291 ]
 [e [\ _mode , $ . `E3004 0 292
  , $ . `E3004 1 293
  , $ . `E3004 2 294
  , $ . `E3004 3 295
  290 ]
-"264
+"295
 [e :U 290 ]
-[; ;pwm_asl.c: 267: lcd_gotoxy(1, 1);
-"267
-[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 268: sprintf(LCD, "RT: %4.1fC", temp);
-"268
-[e ( _sprintf (1 , (. , &U _LCD :s 5C -> _temp `d ]
-[; ;pwm_asl.c: 269: lcd_puts(LCD);
-"269
-[e ( _lcd_puts (1 &U _LCD ]
-[; ;pwm_asl.c: 271: lcd_gotoxy(14, 1);
-"271
-[e ( _lcd_gotoxy (2 , -> -> 14 `i `uc -> -> 1 `i `uc ]
-[; ;pwm_asl.c: 272: lcd_puts("H C");
-"272
-[e ( _lcd_puts (1 -> :s 6C `*uc ]
-[; ;pwm_asl.c: 274: lcd_gotoxy(1, 2);
-"274
-[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
-[; ;pwm_asl.c: 275: sprintf(LCD, "SP: %4.1fC ", sp);
-"275
-[e ( _sprintf (1 , (. , &U _LCD :s 7C -> _sp `d ]
-[; ;pwm_asl.c: 276: lcd_puts(LCD);
-"276
-[e ( _lcd_puts (1 &U _LCD ]
-[; ;pwm_asl.c: 278: lcd_gotoxy(14, 2);
-"278
-[e ( _lcd_gotoxy (2 , -> -> 14 `i `uc -> -> 2 `i `uc ]
-[; ;pwm_asl.c: 279: lcd_putc(H);
-"279
-[e ( _lcd_putc (1 _H ]
-[; ;pwm_asl.c: 280: lcd_gotoxy(16, 2);
-"280
-[e ( _lcd_gotoxy (2 , -> -> 16 `i `uc -> -> 2 `i `uc ]
-[; ;pwm_asl.c: 281: lcd_putc(C);
-"281
-[e ( _lcd_putc (1 _C ]
-[; ;pwm_asl.c: 283: lcd_gotoxy(1, 3);
-"283
-[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 3 `i `uc ]
-[; ;pwm_asl.c: 284: sprintf(LCD, "HS: %d", HS);
-"284
-[e ( _sprintf (1 , (. , &U _LCD :s 8C -> _HS `i ]
-[; ;pwm_asl.c: 285: lcd_puts(LCD);
-"285
-[e ( _lcd_puts (1 &U _LCD ]
-[; ;pwm_asl.c: 287: lcd_gotoxy(8, 3);
-"287
-[e ( _lcd_gotoxy (2 , -> -> 8 `i `uc -> -> 3 `i `uc ]
-[; ;pwm_asl.c: 288: sprintf(LCD, "HC: %4.1f%%", HC);
-"288
-[e ( _sprintf (1 , (. , &U _LCD :s 9C -> _HC `d ]
-[; ;pwm_asl.c: 289: lcd_puts(LCD);
-"289
-[e ( _lcd_puts (1 &U _LCD ]
-[; ;pwm_asl.c: 292: lcd_gotoxy(1, 4);
-"292
-[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
-[; ;pwm_asl.c: 293: sprintf(LCD, "MD:");
-"293
-[e ( _sprintf (1 , &U _LCD :s 10C ]
-[; ;pwm_asl.c: 294: lcd_puts(LCD);
-"294
-[e ( _lcd_puts (1 &U _LCD ]
-[; ;pwm_asl.c: 296: lcd_gotoxy(5, 4);
-"296
-[e ( _lcd_gotoxy (2 , -> -> 5 `i `uc -> -> 4 `i `uc ]
-[; ;pwm_asl.c: 297: lcd_puts(LCDP);
-"297
-[e ( _lcd_puts (1 &U _LCDP ]
-[; ;pwm_asl.c: 298: }
+[; ;pwm_asl.c: 298: lcd_gotoxy(1, 1);
 "298
+[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 299: sprintf(LCD, "RT: %4.1fC", temp);
+"299
+[e ( _sprintf (1 , (. , &U _LCD :s 5C -> _temp `d ]
+[; ;pwm_asl.c: 300: lcd_puts(LCD);
+"300
+[e ( _lcd_puts (1 &U _LCD ]
+[; ;pwm_asl.c: 302: lcd_gotoxy(14, 1);
+"302
+[e ( _lcd_gotoxy (2 , -> -> 14 `i `uc -> -> 1 `i `uc ]
+[; ;pwm_asl.c: 303: lcd_puts("H C");
+"303
+[e ( _lcd_puts (1 -> :s 6C `*uc ]
+[; ;pwm_asl.c: 305: lcd_gotoxy(1, 2);
+"305
+[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 2 `i `uc ]
+[; ;pwm_asl.c: 306: sprintf(LCD, "SP: %4.1fC ", sp);
+"306
+[e ( _sprintf (1 , (. , &U _LCD :s 7C -> _sp `d ]
+[; ;pwm_asl.c: 307: lcd_puts(LCD);
+"307
+[e ( _lcd_puts (1 &U _LCD ]
+[; ;pwm_asl.c: 309: lcd_gotoxy(14, 2);
+"309
+[e ( _lcd_gotoxy (2 , -> -> 14 `i `uc -> -> 2 `i `uc ]
+[; ;pwm_asl.c: 310: lcd_putc(H);
+"310
+[e ( _lcd_putc (1 _H ]
+[; ;pwm_asl.c: 311: lcd_gotoxy(16, 2);
+"311
+[e ( _lcd_gotoxy (2 , -> -> 16 `i `uc -> -> 2 `i `uc ]
+[; ;pwm_asl.c: 312: lcd_putc(C);
+"312
+[e ( _lcd_putc (1 _C ]
+[; ;pwm_asl.c: 314: lcd_gotoxy(1, 3);
+"314
+[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 3 `i `uc ]
+[; ;pwm_asl.c: 315: sprintf(LCD, "HS: %d", HS);
+"315
+[e ( _sprintf (1 , (. , &U _LCD :s 8C -> _HS `i ]
+[; ;pwm_asl.c: 316: lcd_puts(LCD);
+"316
+[e ( _lcd_puts (1 &U _LCD ]
+[; ;pwm_asl.c: 318: lcd_gotoxy(8, 3);
+"318
+[e ( _lcd_gotoxy (2 , -> -> 8 `i `uc -> -> 3 `i `uc ]
+[; ;pwm_asl.c: 319: sprintf(LCD, "HC: %4.1f%%", HC);
+"319
+[e ( _sprintf (1 , (. , &U _LCD :s 9C -> _HC `d ]
+[; ;pwm_asl.c: 320: lcd_puts(LCD);
+"320
+[e ( _lcd_puts (1 &U _LCD ]
+[; ;pwm_asl.c: 323: lcd_gotoxy(1, 4);
+"323
+[e ( _lcd_gotoxy (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
+[; ;pwm_asl.c: 324: sprintf(LCD, "MD:");
+"324
+[e ( _sprintf (1 , &U _LCD :s 10C ]
+[; ;pwm_asl.c: 325: lcd_puts(LCD);
+"325
+[e ( _lcd_puts (1 &U _LCD ]
+[; ;pwm_asl.c: 327: lcd_gotoxy(5, 4);
+"327
+[e ( _lcd_gotoxy (2 , -> -> 5 `i `uc -> -> 4 `i `uc ]
+[; ;pwm_asl.c: 328: lcd_puts(LCDP);
+"328
+[e ( _lcd_puts (1 &U _LCDP ]
+[; ;pwm_asl.c: 329: }
+"329
 [e :UE 289 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"301
+"332
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm_asl.c: 301: void main(void) {
+[; ;pwm_asl.c: 332: void main(void) {
 [e :U _main ]
 [f ]
-"302
+"333
 [v _channel `uc ~T0 @X0 1 a ]
-"303
+"334
 [v _voltage `f ~T0 @X0 1 a ]
-[; ;pwm_asl.c: 302: unsigned char channel;
-[; ;pwm_asl.c: 303: float voltage;
-[; ;pwm_asl.c: 304: setupPorts();
-"304
+[; ;pwm_asl.c: 333: unsigned char channel;
+[; ;pwm_asl.c: 334: float voltage;
+[; ;pwm_asl.c: 335: setupPorts();
+"335
 [e ( _setupPorts ..  ]
-[; ;pwm_asl.c: 305: initInterrupts();
-"305
+[; ;pwm_asl.c: 336: initInterrupts();
+"336
 [e ( _initInterrupts ..  ]
-[; ;pwm_asl.c: 306: lcd_init();
-"306
+[; ;pwm_asl.c: 337: lcd_init();
+"337
 [e ( _lcd_init ..  ]
-[; ;pwm_asl.c: 307: init_adc_no_lib();
-"307
+[; ;pwm_asl.c: 338: init_adc_no_lib();
+"338
 [e ( _init_adc_no_lib ..  ]
-[; ;pwm_asl.c: 308: init_pwm1();
-"308
+[; ;pwm_asl.c: 339: init_pwm1();
+"339
 [e ( _init_pwm1 ..  ]
-[; ;pwm_asl.c: 309: lcd_putc('\f');
-"309
+[; ;pwm_asl.c: 340: lcd_putc('\f');
+"340
 [e ( _lcd_putc (1 -> -> 12 `ui `uc ]
-[; ;pwm_asl.c: 310: mode = OFF;
-"310
+[; ;pwm_asl.c: 341: mode = OFF;
+"341
 [e = _mode . `E3004 0 ]
-[; ;pwm_asl.c: 311: HS = HS_0;
-"311
+[; ;pwm_asl.c: 342: HS = HS_0;
+"342
 [e = _HS . `E3010 0 ]
-[; ;pwm_asl.c: 312: while (1) {
-"312
+[; ;pwm_asl.c: 343: while (1) {
+"343
 [e :U 298 ]
 {
-[; ;pwm_asl.c: 313: asm(" clrwdt");
-"313
+[; ;pwm_asl.c: 344: asm(" clrwdt");
+"344
 [; <"  clrwdt ;# ">
-[; ;pwm_asl.c: 314: delay_ms(200);
-"314
+[; ;pwm_asl.c: 345: delay_ms(200);
+"345
 [e ( _delay_ms (1 -> -> 200 `i `ui ]
-[; ;pwm_asl.c: 315: for (channel = 0; channel < 3; channel++) {
-"315
+[; ;pwm_asl.c: 346: for (channel = 0; channel < 3; channel++) {
+"346
 {
 [e = _channel -> -> 0 `i `uc ]
 [e $ < -> _channel `i -> 3 `i 300  ]
 [e $U 301  ]
 [e :U 300 ]
 {
-[; ;pwm_asl.c: 316: voltage = read_adc_voltage((unsigned char) channel);
-"316
+[; ;pwm_asl.c: 347: voltage = read_adc_voltage((unsigned char) channel);
+"347
 [e = _voltage ( _read_adc_voltage (1 _channel ]
-[; ;pwm_asl.c: 317: AN[channel] = voltage;
-"317
+[; ;pwm_asl.c: 348: AN[channel] = voltage;
+"348
 [e = *U + &U _AN * -> _channel `ux -> -> # *U &U _AN `ui `ux _voltage ]
-"318
+"349
 }
-"315
+"346
 [e ++ _channel -> -> 1 `i `uc ]
 [e $ < -> _channel `i -> 3 `i 300  ]
 [e :U 301 ]
-"318
+"349
 }
-[; ;pwm_asl.c: 318: }
-[; ;pwm_asl.c: 319: sp=AN[0]*20;
-"319
+[; ;pwm_asl.c: 349: }
+[; ;pwm_asl.c: 350: sp=AN[0]*20;
+"350
 [e = _sp * *U + &U _AN * -> -> -> 0 `i `ui `ux -> -> # *U &U _AN `ui `ux -> -> 20 `i `f ]
-[; ;pwm_asl.c: 320: temp=AN[2]*100.0;
-"320
+[; ;pwm_asl.c: 351: temp=AN[2]*100.0;
+"351
 [e = _temp -> * -> *U + &U _AN * -> -> -> 2 `i `ui `ux -> -> # *U &U _AN `ui `ux `d .100.0 `f ]
-[; ;pwm_asl.c: 321: operation();
-"321
+[; ;pwm_asl.c: 352: operation();
+"352
 [e ( _operation ..  ]
-[; ;pwm_asl.c: 322: display();
-"322
+[; ;pwm_asl.c: 353: display();
+"353
 [e ( _display ..  ]
-"323
+"354
 }
 [e :U 297 ]
-"312
+"343
 [e $U 298  ]
 [e :U 299 ]
-[; ;pwm_asl.c: 323: }
-[; ;pwm_asl.c: 324: }
-"324
+[; ;pwm_asl.c: 354: }
+[; ;pwm_asl.c: 355: }
+"355
 [e :UE 296 ]
 }
 [p f _sprintf 9543808 ]

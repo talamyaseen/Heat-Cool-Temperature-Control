@@ -2735,141 +2735,141 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_pwm.c: 6: {
 [e :U _init_pwm1 ]
 [f ]
-[; ;my_pwm.c: 9: PR2 = 255;
-"9
+[; ;my_pwm.c: 7: PR2 = 255;
+"7
 [e = _PR2 -> -> 255 `i `uc ]
-[; ;my_pwm.c: 10: T2CON = 0;
-"10
+[; ;my_pwm.c: 8: T2CON = 0;
+"8
 [e = _T2CON -> -> 0 `i `uc ]
-[; ;my_pwm.c: 11: T2CONbits.T2CKPS = 0b10;
-"11
+[; ;my_pwm.c: 9: T2CONbits.T2CKPS = 0b10;
+"9
 [e = . . _T2CONbits 0 0 -> -> 2 `i `uc ]
-[; ;my_pwm.c: 12: CCP1CON = 0x0C;
-"12
+[; ;my_pwm.c: 10: CCP1CON = 0x0C;
+"10
 [e = _CCP1CON -> -> 12 `i `uc ]
-[; ;my_pwm.c: 14: T2CONbits.TMR2ON = 1;
-"14
+[; ;my_pwm.c: 12: T2CONbits.TMR2ON = 1;
+"12
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-[; ;my_pwm.c: 15: TRISCbits.RC2 =0;
-"15
+[; ;my_pwm.c: 13: TRISCbits.RC2 =0;
+"13
 [e = . . _TRISCbits 1 2 -> -> 0 `i `uc ]
-[; ;my_pwm.c: 16: }
-"16
+[; ;my_pwm.c: 14: }
+"14
 [e :UE 265 ]
 }
-"17
+"15
 [v _set_pwm1_raw `(v ~T0 @X0 1 ef1`ui ]
-"18
+"16
 {
-[; ;my_pwm.c: 17: void set_pwm1_raw(unsigned int raw_value)
-[; ;my_pwm.c: 18: {
+[; ;my_pwm.c: 15: void set_pwm1_raw(unsigned int raw_value)
+[; ;my_pwm.c: 16: {
 [e :U _set_pwm1_raw ]
-"17
+"15
 [v _raw_value `ui ~T0 @X0 1 r1 ]
-"18
+"16
 [f ]
-[; ;my_pwm.c: 19: CCPR1L = (raw_value >> 2) & 0x00FF;
-"19
+[; ;my_pwm.c: 17: CCPR1L = (raw_value >> 2) & 0x00FF;
+"17
 [e = _CCPR1L -> & >> _raw_value -> 2 `i -> -> 255 `i `ui `uc ]
-[; ;my_pwm.c: 20: CCP1CONbits.DC1B = raw_value & 0x0003;
-"20
+[; ;my_pwm.c: 18: CCP1CONbits.DC1B = raw_value & 0x0003;
+"18
 [e = . . _CCP1CONbits 0 1 -> & _raw_value -> -> 3 `i `ui `uc ]
-[; ;my_pwm.c: 24: }
-"24
+[; ;my_pwm.c: 22: }
+"22
 [e :UE 266 ]
 }
-"25
+"23
 [v _set_pwm1_percent `(v ~T0 @X0 1 ef1`f ]
-"26
+"24
 {
-[; ;my_pwm.c: 25: void set_pwm1_percent(float value)
-[; ;my_pwm.c: 26: {
+[; ;my_pwm.c: 23: void set_pwm1_percent(float value)
+[; ;my_pwm.c: 24: {
 [e :U _set_pwm1_percent ]
-"25
+"23
 [v _value `f ~T0 @X0 1 r1 ]
-"26
+"24
 [f ]
-"27
+"25
 [v _tmp `f ~T0 @X0 1 a ]
-[; ;my_pwm.c: 27: float tmp = value*1023.0/100.0;
+[; ;my_pwm.c: 25: float tmp = value*1023.0/100.0;
 [e = _tmp -> / * -> _value `d .1023.0 .100.0 `f ]
-"28
+"26
 [v _raw_val `i ~T0 @X0 1 a ]
-[; ;my_pwm.c: 28: int raw_val = (int)(tmp +0.5);
+[; ;my_pwm.c: 26: int raw_val = (int)(tmp +0.5);
 [e = _raw_val -> + -> _tmp `d .0.5 `i ]
-[; ;my_pwm.c: 29: if ( raw_val> 1023) raw_val = 1023;
-"29
+[; ;my_pwm.c: 27: if ( raw_val> 1023) raw_val = 1023;
+"27
 [e $ ! > _raw_val -> 1023 `i 268  ]
 [e = _raw_val -> 1023 `i ]
 [e :U 268 ]
-[; ;my_pwm.c: 30: set_pwm1_raw(raw_val);
-"30
+[; ;my_pwm.c: 28: set_pwm1_raw(raw_val);
+"28
 [e ( _set_pwm1_raw (1 -> _raw_val `ui ]
-[; ;my_pwm.c: 31: }
-"31
+[; ;my_pwm.c: 29: }
+"29
 [e :UE 267 ]
 }
-"32
+"30
 [v _set_pwm1_voltage `(v ~T0 @X0 1 ef1`f ]
-"33
+"31
 {
-[; ;my_pwm.c: 32: void set_pwm1_voltage(float value)
-[; ;my_pwm.c: 33: {
+[; ;my_pwm.c: 30: void set_pwm1_voltage(float value)
+[; ;my_pwm.c: 31: {
 [e :U _set_pwm1_voltage ]
-"32
+"30
 [v _value `f ~T0 @X0 1 r1 ]
-"33
+"31
 [f ]
-"34
+"32
 [v _tmp `f ~T0 @X0 1 a ]
-[; ;my_pwm.c: 34: float tmp = value*1023.0/5.0;
+[; ;my_pwm.c: 32: float tmp = value*1023.0/5.0;
 [e = _tmp -> / * -> _value `d .1023.0 .5.0 `f ]
-"35
+"33
 [v _raw_val `i ~T0 @X0 1 a ]
-[; ;my_pwm.c: 35: int raw_val = (int)(tmp +0.5);
+[; ;my_pwm.c: 33: int raw_val = (int)(tmp +0.5);
 [e = _raw_val -> + -> _tmp `d .0.5 `i ]
-[; ;my_pwm.c: 36: if ( raw_val> 1023) raw_val = 1023;
-"36
+[; ;my_pwm.c: 34: if ( raw_val> 1023) raw_val = 1023;
+"34
 [e $ ! > _raw_val -> 1023 `i 270  ]
 [e = _raw_val -> 1023 `i ]
 [e :U 270 ]
-[; ;my_pwm.c: 37: set_pwm1_raw(raw_val);
-"37
+[; ;my_pwm.c: 35: set_pwm1_raw(raw_val);
+"35
 [e ( _set_pwm1_raw (1 -> _raw_val `ui ]
-[; ;my_pwm.c: 39: }
-"39
+[; ;my_pwm.c: 37: }
+"37
 [e :UE 269 ]
 }
-"41
+"39
 [v _set_pwm1_general `(v ~T0 @X0 1 ef3`f`f`f ]
-"42
+"40
 {
-[; ;my_pwm.c: 41: void set_pwm1_general(float value, float min, float max)
-[; ;my_pwm.c: 42: {
+[; ;my_pwm.c: 39: void set_pwm1_general(float value, float min, float max)
+[; ;my_pwm.c: 40: {
 [e :U _set_pwm1_general ]
-"41
+"39
 [v _value `f ~T0 @X0 1 r1 ]
 [v _min `f ~T0 @X0 1 r2 ]
 [v _max `f ~T0 @X0 1 r3 ]
-"42
+"40
 [f ]
-"43
+"41
 [v _tmp `f ~T0 @X0 1 a ]
-[; ;my_pwm.c: 43: float tmp = (value - min)*1023.0/(max - min);
+[; ;my_pwm.c: 41: float tmp = (value - min)*1023.0/(max - min);
 [e = _tmp -> / * -> - _value _min `d .1023.0 -> - _max _min `d `f ]
-"44
+"42
 [v _raw_val `i ~T0 @X0 1 a ]
-[; ;my_pwm.c: 44: int raw_val = (int)(tmp +0.5);
+[; ;my_pwm.c: 42: int raw_val = (int)(tmp +0.5);
 [e = _raw_val -> + -> _tmp `d .0.5 `i ]
-[; ;my_pwm.c: 45: if ( raw_val> 1023) raw_val = 1023;
-"45
+[; ;my_pwm.c: 43: if ( raw_val> 1023) raw_val = 1023;
+"43
 [e $ ! > _raw_val -> 1023 `i 272  ]
 [e = _raw_val -> 1023 `i ]
 [e :U 272 ]
-[; ;my_pwm.c: 46: set_pwm1_raw(raw_val);
-"46
+[; ;my_pwm.c: 44: set_pwm1_raw(raw_val);
+"44
 [e ( _set_pwm1_raw (1 -> _raw_val `ui ]
-[; ;my_pwm.c: 48: }
-"48
+[; ;my_pwm.c: 46: }
+"46
 [e :UE 271 ]
 }

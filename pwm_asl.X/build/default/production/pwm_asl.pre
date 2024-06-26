@@ -3874,7 +3874,7 @@ int raw_val;
 float AN[3];
 mode_e mode =OFF;
 float temp, sp ;
-
+float compare;
 
 char Buffer[32];
 unsigned int RPS_count=0;
@@ -3894,32 +3894,38 @@ TRISE = 0x00;
 
 void initInterrupts(void) {
 INTCON = 0;
+T3CON = 0;
+PIE1 = 0;
+PIR1 = 0;
+IPR1 = 0;
+PIE2 = 0;
+PIR2 = 0;
+IPR2 = 0;
 RCONbits.IPEN = 0;
 CCP2CON = 0x09;
 
 
 INTCONbits.INT0IF = 0;
 INTCON3bits.INT2IF = 0;
-PIR2bits.TMR3IF = 0;
 
 
 INTCONbits.INT0IE = 1;
 INTCON3bits.INT2IE = 1;
-T3CON = 0;
-T3CONbits.TMR3ON = 1;
-INTCON2 = 0;
-INTCON2bits.INTEDG2 = 1;
-INTCON2bits.INTEDG0= 1;
-PIE1 = 0;
-PIR1 = 0;
-IPR1 = 0;
-PIE2 = 0;
-PIE2 = 0;
-PIR2 = 0;
-IPR2 = 0;
-PIE2bits.CCP2IE = 1;
-INTCONbits.GIE = 1;
 
+T3CONbits.TMR3ON = 1;
+INTCON2bits.INTEDG2 = 1;
+INTCON2bits.INTEDG0 = 1;
+PIE2bits.TMR3IE = 0;
+
+INTCONbits.GIE = 1;
+T3CON = 0x00;
+T3CONbits.T3CKPS = 0b10;
+T3CONbits.TMR3ON = 1;
+T3CONbits.T3CCP2 = 1;
+TMR3 = 0x0000;
+PIE2bits.TMR3IE = 0;
+INTCONbits.PEIE = 1;
+INTCONbits.GIE = 1;
 }
 void __interrupt(high_priority) highIsr(void)
 {
@@ -3938,11 +3944,32 @@ HS = (HS + 1) % (HS_4 + 1);
 INTCON3bits.INT2IF = 0;
 }
 }
-if (PIR2bits.TMR3IF) {
+
+if (PIR2bits.TMR3IF)
+{
 
 PIR2bits.TMR3IF = 0;
+
+
+LATCbits.LATC5 = 1;
+
+
+CCPR2 = compare;
 }
 
+
+if (PIR2bits.CCP2IF)
+{
+PIR2bits.CCP2IF = 0;
+
+
+LATCbits.LATC5 = 0;
+
+
+
+}
+
+# 202
 }
 
 
@@ -3956,8 +3983,10 @@ if(PORTBbits.RB3==0)
 {
 set_pwm1_raw(0);
 PORTCbits.RC2=0;
+PORTCbits.RC5=0;
 HC=0;
 PIE2bits.CCP2IE = 0;
+PIE2bits.TMR3IE = 0;
 }
 }
 break;
@@ -3966,31 +3995,19 @@ case COOL:
 HC =(AN[1]/5.0)*100.0;
 raw_val = read_adc_raw_no_lib(1);
 set_pwm1_raw(raw_val);
+PORTCbits.RC5=0;
+PIE2bits.CCP2IE = 0;
+PIE2bits.TMR3IE = 0;
 break;
 
 case HEAT:
 HC = (AN[1] / 5.0) * 100.0;
-
-
 raw_val = read_adc_raw_no_lib(1);
-
-
-int compare_value = raw_val * 64;
-if (compare_value > 65535) {
-compare_value = 65535;
-}
-
-
-
-
+compare=raw_val * 64;
+set_pwm1_raw(0);
+PORTCbits.RC2=0;
 PIE2bits.CCP2IE = 1;
-
-
-CCPR2H = (compare_value >> 8) & 0xFF;
-CCPR2L = compare_value & 0xFF;
-
-
-T3CONbits.TMR3ON = 1;
+PIE2bits.TMR3IE = 1;
 break;
 
 case AUTO_COOL:
@@ -4000,15 +4017,19 @@ float PWM_percentage_value = CoolError * 10;
 if (PWM_percentage_value < 25) {
 PWM_percentage_value = 25;
 }
-raw_val = (int)(PWM_percentage_value * 1023.0 / 100.0);
+HC =(AN[1]/5.0)*100.0;
+raw_val = read_adc_raw_no_lib(1);
 set_pwm1_raw(raw_val);
 PORTCbits.RC5 = 0;
 PIE2bits.CCP2IE = 0;
+PIE2bits.TMR3IE = 0;
 } else if (temp < (sp - HS)) {
 set_pwm1_raw(0);
 PORTCbits.RC2 = 0;
 HC = 50.0;
+compare=512 * 64;
 PIE2bits.CCP2IE = 1;
+PIE2bits.TMR3IE = 1;
 }
 break;
 }

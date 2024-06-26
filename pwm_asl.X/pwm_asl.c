@@ -93,7 +93,7 @@ int raw_val;
 float AN[3];     // To store the voltages of AN0, AN1, AN2
 mode_e mode =OFF;
 float temp, sp ;
-
+float compare;
 
 char Buffer[32];
 unsigned int RPS_count=0;
@@ -112,33 +112,39 @@ void setupPorts(void) {
 }
 
 void initInterrupts(void) {
-      INTCON = 0;
+    INTCON = 0;
+    T3CON = 0;
+     PIE1 = 0;
+    PIR1 = 0;
+    IPR1 = 0;
+    PIE2 = 0;
+    PIR2 = 0;
+    IPR2 = 0;
     RCONbits.IPEN = 0;
     CCP2CON = 0x09;
 
     // Clear all interrupt flags
     INTCONbits.INT0IF = 0;
     INTCON3bits.INT2IF = 0;
-    PIR2bits.TMR3IF = 0;
 
     // Enable interrupts
     INTCONbits.INT0IE = 1;  // Enable INT0 external interrupt
     INTCON3bits.INT2IE = 1;  // Enable INT2 external interrupt
-    T3CON = 0;
-    T3CONbits.TMR3ON = 1;  // turn the timer on , prescaler = 1
-    INTCON2 = 0;
+    
+    T3CONbits.TMR3ON = 1;  // Turn the timer on, prescaler = 1
     INTCON2bits.INTEDG2 = 1;
-    INTCON2bits.INTEDG0= 1;
-    PIE1 = 0;
-    PIR1 = 0;
-    IPR1 = 0;
-    PIE2 = 0;
-    PIE2 = 0;
-    PIR2 = 0;
-    IPR2 = 0;
-    PIE2bits.CCP2IE = 1; 
+    INTCON2bits.INTEDG0 = 1;
+    PIE2bits.TMR3IE = 0; 
+    //PIE2bits.CCP2IE = 1; 
     INTCONbits.GIE = 1;  // Enable global interrupts
-
+    T3CON = 0x00;           // Clear Timer 3 control register
+T3CONbits.T3CKPS = 0b10; // Prescaler 1:4
+T3CONbits.TMR3ON = 1;   // Turn on Timer 3
+T3CONbits.T3CCP2 = 1; 
+TMR3 = 0x0000;          // Initialize Timer 3 register
+PIE2bits.TMR3IE = 0;    // Enable Timer 3 interrupt
+INTCONbits.PEIE = 1;    // Enable Peripheral Interrupt
+INTCONbits.GIE = 1;   
 }
 void __interrupt(high_priority) highIsr(void)//new syntax
 {
@@ -157,11 +163,42 @@ void __interrupt(high_priority) highIsr(void)//new syntax
         INTCON3bits.INT2IF = 0;  // Clear the interrupt flag
            }
     }
-    if (PIR2bits.TMR3IF) {
-       // handleHeating();
-        PIR2bits.TMR3IF = 0;  // Clear the interrupt flag
+      
+       if (PIR2bits.TMR3IF)
+    {
+           
+        PIR2bits.TMR3IF = 0;  // Clear Timer 3 interrupt flag
+        
+        // Set RC5 to 1 (turn heater ON)
+        LATCbits.LATC5 = 1;
+        
+        // Set CCPR2 to Compare Value for the current PWM cycle
+        CCPR2 = compare;
     }
 
+    // CCP2 interrupt handling
+    if (PIR2bits.CCP2IF)
+    {
+        PIR2bits.CCP2IF = 0;  // Clear CCP2 interrupt flag
+        
+        // Set RC5 to 0 (turn heater OFF)
+        LATCbits.LATC5 = 0;
+        
+        // Prepare for the next compare match (end of the current PWM cycle)
+        
+    }
+    /*if (PIR2bits.TMR3IF) {
+        PIR2bits.TMR3IF = 0;  // Clear the interrupt flag
+        CCPR2H = ((unsigned)compare) >> 8;
+        CCPR2L = ((unsigned)compare) & 0xFF;
+        TMR3 = 0;    // Reset Timer3
+        RC5 = 1;     // Heater ON
+    }
+    if (PIR2bits.CCP2IF) {
+        PIR2bits.CCP2IF = 0;  // Clear CCP2 Interrupt Flag
+        PORTCbits.RC5 = 0;    // Heater OFF
+    }
+*/
 }
 
 
@@ -175,41 +212,31 @@ void operation (void){
            {
              set_pwm1_raw(0);  
             PORTCbits.RC2=0;
+            PORTCbits.RC5=0;
             HC=0;
             PIE2bits.CCP2IE = 0; 
+             PIE2bits.TMR3IE = 0; 
             }
             }
             break;    
         case COOL:
-         
+            
             HC =(AN[1]/5.0)*100.0; 
             raw_val = read_adc_raw_no_lib(1); // read raw value for POT1 
             set_pwm1_raw(raw_val);  // set the Pwm to that value 0--1023
+            PORTCbits.RC5=0;
+             PIE2bits.CCP2IE = 0;
+              PIE2bits.TMR3IE = 0; 
             break;
         
         case HEAT:
-            HC = (AN[1] / 5.0) * 100.0; // HC value
-
-             // Read the raw ADC value for POT1 (analog input 1)
-             raw_val = read_adc_raw_no_lib(1); // Read raw value for POT1 
-
-    // Calculate the compare value for Timer 3
-            int compare_value = raw_val * 64; // Shift left by 6 bits to multiply by 64
-    if (compare_value > 65535) {
-        compare_value = 65535; // Ensure compare_value does not exceed 16-bit limit
-    }
-    // Turn off the cooler
-    //set_pwm1_raw(0);  
-
-    // Enable CCP2 interrupt
-    PIE2bits.CCP2IE = 1;
-
-    // Set the compare value for CCP2
-    CCPR2H = (compare_value >> 8) & 0xFF;
-    CCPR2L = compare_value & 0xFF;
-
-    // Enable Timer 3
-    T3CONbits.TMR3ON = 1;
+            HC = (AN[1] / 5.0) * 100.0; // HC valu
+            raw_val = read_adc_raw_no_lib(1); // Read raw value for POT1 
+            compare=raw_val * 64;
+            set_pwm1_raw(0);  
+            PORTCbits.RC2=0;
+             PIE2bits.CCP2IE = 1;
+              PIE2bits.TMR3IE = 1; 
             break;
         
         case AUTO_COOL:
@@ -219,15 +246,19 @@ void operation (void){
         if (PWM_percentage_value < 25) {
             PWM_percentage_value = 25;
         }
-        raw_val = (int)(PWM_percentage_value * 1023.0 / 100.0); 
+         HC =(AN[1]/5.0)*100.0; 
+      raw_val = read_adc_raw_no_lib(1); 
         set_pwm1_raw(raw_val);
         PORTCbits.RC5 = 0; // Turn heater off
         PIE2bits.CCP2IE = 0;
+         PIE2bits.TMR3IE = 0; 
     } else if (temp < (sp - HS)) {
         set_pwm1_raw(0); // Cooler OFF
         PORTCbits.RC2 = 0;
         HC = 50.0; // Simulate turning on the heater to 50%
+        compare=512 * 64; //%50
         PIE2bits.CCP2IE = 1; // Enable Compare interrupt to simulate heater
+         PIE2bits.TMR3IE = 1; 
     }
             break;
     }
